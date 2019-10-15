@@ -4,10 +4,10 @@ import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(
-    Calendario(),
+    CollapsableTextApp(),
   );
 }
-/*testing github*/ 
+
 class Semaforo extends StatelessWidget {
   const Semaforo({
     Key key,
@@ -173,13 +173,71 @@ class CalendaryDay extends StatelessWidget {
           ),
           Text(
             name_day,
-            style: TextStyle(  
+            style: TextStyle(
               fontSize: 20,
               color: (selected ? Colors.white : Colors.grey[400]),
             ),
           )
         ],
       ),
+    );
+  }
+}
+
+class CollapsableTextApp extends StatelessWidget {
+  const CollapsableTextApp({
+    Key key,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: CollapsableText(
+            text:
+                ("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ullamcorper blandit felis, ac eleifend tellus tempus eu. Aliquam rutrum lacinia scelerisque. Curabitur suscipit pharetra posuere. Suspendisse non egestas lectus. Suspendisse justo elit, pulvinar in sem et, varius facilisis leo. Proin feugiat, purus non auctor commodo, arcu felis lobortis turpis, ac sagittis augue risus et urna. Vivamus a arcu nunc. Aliquam facilisis laoreet lorem, non semper lacus. Proin est est, ultrices eget metus nec, viverra lobortis ligula. Duis eu erat eget mauris laoreet tincidunt. Morbi porta at lectus vitae venenatis. Aliquam a augue porta orci blandit rhoncus. "),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CollapsableText extends StatefulWidget {
+  final String text;
+  CollapsableText({this.text});
+
+  @override
+  State<StatefulWidget> createState() => _CollapsableTextState();
+}
+
+class _CollapsableTextState extends State<CollapsableText> {
+  bool show = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: <Widget>[
+          Text(
+              widget.text,
+              maxLines: show ? 5 : null,
+            ),
+          FlatButton(
+            onPressed: () {
+              setState(() {
+                show = !show;
+              });
+            },
+            child: Text(show ? "More!": "Less!"),
+          )
+        ],
+      ),
+      width: 150,
+      color: Colors.grey[300],
+            
     );
   }
 }
