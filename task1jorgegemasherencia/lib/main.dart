@@ -9,26 +9,28 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.grey[200],
-        body: Column(
-          children: <Widget>[
-            Center(
-              child: Stack(
-                alignment: AlignmentDirectional.topCenter,
-                children: <Widget>[
-                  BoxDescription(),
-                  PlantCircle(),
-                  SizedBox(
-                    height: 325,
-                  )
-                ],
+        body: Scrollbar(
+          child: ListView(
+            children: <Widget>[
+              Center(
+                child: Stack(
+                  alignment: AlignmentDirectional.topCenter,
+                  children: <Widget>[
+                    BoxDescription(),
+                    PlantCircle(),
+                    SizedBox(
+                      height: 325,
+                    )
+                  ],
+                ),
               ),
-            ),
-            TextBox(
-              title: "Description",
-              text:
-                  "Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test",
-            )
-          ],
+              TextBox(
+                title: "Description",
+                text:
+                    "Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test",
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -49,54 +51,55 @@ class _TextBoxState extends State<TextBox> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: 10),
-
-      width: 375,
-      color: Colors.grey[350],
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.only(left: 5),
-            child: Text(
-              widget.title,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.green),
+    return Center(
+      child: Container(
+        padding: EdgeInsets.only(top: 10),
+        width: 375,
+        color: Colors.grey[350],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(left: 5),
+              child: Text(
+                widget.title,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: Colors.green),
+              ),
             ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Container(
-            padding: EdgeInsets.all(10),
-            margin: EdgeInsets.only(left: 1),
-            width: 373,
-            color: Colors.white,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  widget.text,
-                  maxLines: show ? 5 : 8,
-                ),
-                FlatButton(
-                  onPressed: () {
-                    setState(() {
-                      show = !show;
-                    });
-                  },
-                  child: Text(
-                    show ? "more.." : "less..",
-                    style: TextStyle(color: Colors.green),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              padding: EdgeInsets.all(10),
+              margin: EdgeInsets.only(left: 1),
+              width: 373,
+              color: Colors.white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    widget.text,
+                    maxLines: show ? 5 : 10,
                   ),
-                )
-              ],
+                  FlatButton(
+                    onPressed: () {
+                      setState(() {
+                        show = !show;
+                      });
+                    },
+                    child: Text(
+                      show ? "more.." : "less..",
+                      style: TextStyle(color: Colors.green),
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
