@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
               Positioned(
                 top: 50,
                 child: Container(
+                  padding: EdgeInsets.all(10),
                   width: 375,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,9 +41,19 @@ class MyApp extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          TextCamp(textBold: "Family:", description: "Rubiaceae",),
-                          TextCamp(textBold: "Other Name:", description: "Aromatic madder, Bengal madder, Indian madder, Madderwort, Rubia root, Munjeet",),
-                          TextCamp(textBold: "Used Part:", description: "Roots, Leaves, Stems",),
+                          TextCamp(
+                            textBold: "Family:",
+                            description: "Rubiaceae",
+                          ),
+                          TextCamp(
+                            textBold: "Other Name:",
+                            description:
+                                "Aromatic madder, Bengal madder, Indian madder, Madderwort, Rubia root, Munjeet",
+                          ),
+                          TextCamp(
+                            textBold: "Used Part:",
+                            description: "Roots, Leaves, Stems",
+                          ),
                         ],
                       ),
                     ],
@@ -63,7 +74,7 @@ class TextCamp extends StatelessWidget {
   final String textBold;
   final String description;
 
-  TextCamp({this.textBold,this.description});
+  TextCamp({this.textBold, this.description});
 
   @override
   Widget build(BuildContext context) {
