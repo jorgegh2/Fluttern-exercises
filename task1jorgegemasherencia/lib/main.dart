@@ -4,67 +4,143 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
       home: Scaffold(
-        backgroundColor: Colors.grey[300],
-        body: Center(
-          child: Stack(
-            alignment: AlignmentDirectional.center,
-            children: <Widget>[
-              Positioned(
-                top: 50,
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  width: 375,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(
-                        height: 100,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          TextCamp(
-                            textBold: "Family:",
-                            description: "Rubiaceae",
-                          ),
-                          TextCamp(
-                            textBold: "Other Name:",
-                            description:
-                                "Aromatic madder, Bengal madder, Indian madder, Madderwort, Rubia root, Munjeet",
-                          ),
-                          TextCamp(
-                            textBold: "Used Part:",
-                            description: "Roots, Leaves, Stems",
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  color: Colors.white,
-                ),
+        backgroundColor: Colors.grey[200],
+        body: Column(
+          children: <Widget>[
+            Center(
+              child: Stack(
+                alignment: AlignmentDirectional.topCenter,
+                children: <Widget>[
+                  BoxDescription(),
+                  PlantCircle(),
+                  SizedBox(
+                    height: 325,
+                  )
+                ],
               ),
-              PlantCircle(),
-            ],
-          ),
+            ),
+            TextBox(
+              title: "Description",
+              text:
+                  "Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test",
+            )
+          ],
         ),
+      ),
+    );
+  }
+}
+
+class TextBox extends StatefulWidget {
+  final String title;
+  final String text;
+  TextBox({@required this.title, @required this.text});
+
+  @override
+  State<StatefulWidget> createState() => _TextBoxState();
+}
+
+class _TextBoxState extends State<TextBox> {
+  bool show = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(top: 10),
+
+      width: 375,
+      color: Colors.grey[350],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(left: 5),
+            child: Text(
+              widget.title,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Colors.green),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            padding: EdgeInsets.all(10),
+            margin: EdgeInsets.only(left: 1),
+            width: 373,
+            color: Colors.white,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  widget.text,
+                  maxLines: show ? 5 : 8,
+                ),
+                FlatButton(
+                  onPressed: () {
+                    setState(() {
+                      show = !show;
+                    });
+                  },
+                  child: Text(
+                    show ? "more.." : "less..",
+                    style: TextStyle(color: Colors.green),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class BoxDescription extends StatelessWidget {
+  const BoxDescription({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: 50,
+      child: Container(
+        padding: EdgeInsets.all(10),
+        width: 375,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(
+              height: 100,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                TextCamp(
+                  textBold: "Family:",
+                  description: "Rubiaceae",
+                ),
+                TextCamp(
+                  textBold: "Other Name:",
+                  description:
+                      "Aromatic madder, Bengal madder, Indian madder, Madderwort, Rubia root, Munjeet",
+                ),
+                TextCamp(
+                  textBold: "Used Part:",
+                  description: "Roots, Leaves, Stems",
+                ),
+              ],
+            ),
+          ],
+        ),
+        color: Colors.white,
       ),
     );
   }
@@ -140,23 +216,6 @@ class PlantCircle extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          /* Stack(
-            children: <Widget>[
-              Container(
-                width: 50,
-                height: 50,
-                color: Colors.red,
-              ),
-              Positioned(
-                child: Container(
-                  width: 20,
-                  height: 20,
-                  color: Colors.blue,
-                ),
-                //top: 15,
-              )
-            ],
-          )*/
         ],
       ),
     );
