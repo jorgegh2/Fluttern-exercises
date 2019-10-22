@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/*https://dribbble.com/shots/7423743-Laborati-Ginori*/
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -16,10 +15,10 @@ class MyApp extends StatelessWidget {
                 child: Stack(
                   alignment: AlignmentDirectional.topCenter,
                   children: <Widget>[
-                    BoxDescription(),
+                    BoxInit(),
                     PlantCircle(),
                     SizedBox(
-                      height: 325,
+                      height: 310,
                     )
                   ],
                 ),
@@ -28,7 +27,12 @@ class MyApp extends StatelessWidget {
                 title: "Description",
                 text:
                     "Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test",
-              )
+              ),
+              TextBox(
+                title: "Nutritional Value",
+                text:
+                    "jhuddifdjfdjifdjisdfijdifjdjfjfjfjfjfjjfjfjhuddifdjfdjifdjisdfijdifjdjfjfjfjfjfjjfjfjhuddifdjfdjifdjisdfijdifjdjfjfjfjfjfjjfjfjhuddifdjfdjifdjisdfijdifjdjfjfjfjfjfjjfjfjhuddifdjfdjifdjisdfijdifjdjfjfjfjfjfjjfjfjhuddifdjfdjifdjisdfijdifjdjfjfjfjfjfjjfjfjhuddifdjfdjifdjisdfijdifjdjfjfjfjfjfjjfjfjhuddifdjfdjifdjisdfijdifjdjfjfjfjfjfjjfjfjhuddifdjfdjifdjisdfijdifjdjfjfjfjfjfjjfjfjhuddifdjfdjifdjisdfijdifjdjfjfjfjfjfjjfjfjhuddifdjfdjifdjisdfijdifjdjfjfjfjfjfjjfjfjhuddifdjfdjifdjisdfijdifjdjfjfjfjfjfjjfjfjhuddifdjfdjifdjisdfijdifjdjfjfjfjfjfjjfjfjhuddifdjfdjifdjisdfijdifjdjfjfjfjfjfjjfjfjhuddifdjfdjifdjisdfijdifjdjfjfjfjfjfjjfjfjhuddifdjfdjifdjisdfijdifjdjfjfjfjfjfjjfjfjhuddifdjfdjifdjisdfijdifjdjfjfjfjfjfjjfjfjhuddifdjfdjifdjisdfijdifjdjfjfjfjfjfjjfjfjhuddifdjfdjifdjisdfijdifjdjfjfjfjfjfjjfjf",
+              ),
             ],
           ),
         ),
@@ -52,61 +56,78 @@ class _TextBoxState extends State<TextBox> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        padding: EdgeInsets.only(top: 10),
-        width: 375,
-        color: Colors.grey[350],
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(left: 5),
-              child: Text(
-                widget.title,
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    color: Colors.green),
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              padding: EdgeInsets.all(10),
-              margin: EdgeInsets.only(left: 1),
-              width: 373,
-              color: Colors.white,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    widget.text,
-                    maxLines: show ? 5 : 10,
-                  ),
-                  FlatButton(
-                    onPressed: () {
-                      setState(() {
-                        show = !show;
-                      });
-                    },
-                    child: Text(
-                      show ? "more.." : "less..",
-                      style: TextStyle(color: Colors.green),
+      child: Column(
+        children: <Widget>[
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            padding: EdgeInsets.only(top: 10),
+            width: 375,
+            color: Colors.grey[350],
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.only(left: 5),
+                      child: Text(
+                        widget.title,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.green,
+                        ),
+                      ),
                     ),
-                  )
-                ],
-              ),
+                    Icon(Icons.content_copy),
+                    SizedBox(width: 10,),
+                    VerticalDivider(color: Colors.grey, indent: 10,),
+                    SizedBox(width: 10,),
+                    Icon(Icons.share),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.only(left: 1),
+                  width: 373,
+                  color: Colors.white,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        widget.text,
+                        maxLines: show ? 5 : null,
+                      ),
+                      FlatButton(
+                        onPressed: () {
+                          setState(() {
+                            show = !show;
+                          });
+                        },
+                        child: Text(
+                          show ? "more.." : "less..",
+                          style: TextStyle(color: Colors.green),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
 
-class BoxDescription extends StatelessWidget {
-  const BoxDescription({
+class BoxInit extends StatelessWidget {
+  const BoxInit({
     Key key,
   }) : super(key: key);
 
@@ -120,6 +141,7 @@ class BoxDescription extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            Row(children: <Widget>[Icon(Icons.warning), Icon(Icons.attach_file)],),
             SizedBox(
               height: 100,
             ),
@@ -204,6 +226,7 @@ class PlantCircle extends StatelessWidget {
                     shape: CircleBorder(),
                     color: Colors.green[200],
                   ),
+                 child: Image.asset('assets/CircleImage.jpg'),
                 ),
               ],
             ),
