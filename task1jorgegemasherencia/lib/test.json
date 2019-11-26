@@ -1,0 +1,25 @@
+{
+    "basicInfo" :
+    {
+        "plantName" : "",
+        "URLs" : 
+        {
+            "plantURL" : "",
+            "plantCircleURL" : ""
+        }
+    },
+    "description" : 
+    {
+        "familyDescription" : "",
+        "otherNameDescription" : "",
+        "usedPartDescription" : ""
+    },
+    "boxes" : 
+    {
+        "boxDescription" : "",
+        "boxNutritionalValue" : "",
+        "boxHealthBenefits" : "",
+        "boxOtherUses" : "",
+        "boxWarnings" : ""
+    }
+}
