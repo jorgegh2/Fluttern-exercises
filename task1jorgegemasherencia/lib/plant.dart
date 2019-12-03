@@ -1,4 +1,31 @@
+import 'dart:convert';
+import 'package:flutter/services.dart';
+
 class Plant {
+
+  Plant.fromJSON(Map<String, dynamic> jsonElement)
+  {
+    Map<String, dynamic> basicInfoJson = jsonElement["basicInfo"];
+    plantName = basicInfoJson["plantName"];
+  
+    Map<String, dynamic> urlsJson = basicInfoJson["URLs"];
+    plantURL = urlsJson["plantURL"];
+    plantCircleURL = urlsJson["plantCircleURL"];
+
+    Map<String, dynamic> descriptionJson = jsonElement["description"];
+    familyDescription = descriptionJson["familyDescription"];
+    otherNameDescription = descriptionJson["otherNameDescription"];
+    usedPartDescription = descriptionJson["usedPartDescription"];
+
+    Map<String, dynamic> boxesJson = jsonElement["boxes"];
+    boxDescription = boxesJson["boxDescription"];
+    boxNutritionalValue = boxesJson["boxNutritionalValue"];
+    boxHealthBenefits = boxesJson["boxHealthBenefits"];
+    boxOtherUses = boxesJson["boxOtherUses"];
+    boxWarnings = boxesJson["boxWarnings"]; 
+  }
+
+
   String plantName;
   String plantURL, plantCircleURL;
   String familyDescription, otherNameDescription, usedPartDescription;
@@ -22,6 +49,7 @@ class Plant {
   );
 }
 
+
 final indianMadder = Plant(
   'Indian Madder',
 
@@ -38,3 +66,15 @@ final indianMadder = Plant(
   "- Red dye is obtained from the stems and the root. It is used for dyeing wool, silk, linen and cotton fabrics, as well as basket-making material.\n\n- Plant is traditionally grown in living fences in the northwestern Himalayas, where it helps to exclude livestock and other animals.\n\n- Juice of crushed fruits is bottled and used as green to bluish ink.\n\n- Ash of burnt stems and leaves is used as vegetable salt to soften vegetables when cooking in Tanzania.\n\n- Indian madder can be used as an ornamental climber, but in cultivated fields, it can behave as a troublesome weed.",
   "- Pregnant women should not take Indian madder internally. It might trigger menstruation and might lead to miscarriage.\n\n- Indian madder should not be used by nursing mothers and might cause breast milk to become red.\n\n- It may change the colour of the urine, saliva, perspiration, tears, and breast milk.\n\n- Indian madder supplements may interact with blood thinners like warfarin and coumadin.\n\n- There are also compounds in the plant that are known to cause cancer if taken orally. It can also cause restlessness and constipation. Use Indian madder using the recommended dosage."
   );
+
+
+  Future<List<Plant>> loadPlants() async {
+    String jsonString = await rootBundle.loadString('assets/test.json');
+    List json = jsonDecode(jsonString);
+    List<Plant> plantLoaded = [];
+    for(var currentElement in json)
+    {
+      plantLoaded.add(Plant.fromJSON(currentElement));
+    }
+    return plantLoaded;
+  }
