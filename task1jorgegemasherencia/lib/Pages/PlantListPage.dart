@@ -3,9 +3,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:task1jorgegemasherencia/Pages/PlantPage.dart';
 import 'package:task1jorgegemasherencia/plant.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:flutter/services.dart';
 
 class PlantListPage extends StatelessWidget {
   @override
@@ -26,7 +26,13 @@ class PlantListPage extends StatelessWidget {
                   title: Text(_plantList[index].plantName),
                   subtitle: Text("sub text"),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => PlantPage(_plantList[index]),
+                    ),
+                  );
+                },
               );
             },
           );

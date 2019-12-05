@@ -1,5 +1,6 @@
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:task1jorgegemasherencia/PlantList.dart';
 import 'package:task1jorgegemasherencia/plant.dart';
 
 class PlantPage extends StatelessWidget {
@@ -8,85 +9,107 @@ class PlantPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scrollbar(
-      child: ListView(
-        children: <Widget>[
-          Stack(
-            overflow: Overflow.visible,
-            alignment: AlignmentDirectional.bottomEnd,
-            children: <Widget>[
-              AspectRatio(
-                aspectRatio: 3 / 2,
-                child: Image.asset(
-                  plant.plantURL,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Positioned(
-                right: 25,
-                bottom: -25,
-                child: Container(
-                  width: 52,
-                  height: 52,
-                  decoration: ShapeDecoration(
-                    shape: CircleBorder(),
-                    color: Colors.green,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        width: 50,
-                        height: 50,
-                        decoration: ShapeDecoration(
-                          shape: CircleBorder(),
-                          color: Colors.white,
-                        ),
-                        child: Icon(Icons.favorite),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+    return Scaffold(
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
+        textTheme: TextTheme(
+          title: TextStyle(
+            color: Colors.black,
+            fontSize: 18,
           ),
-          SizedBox(height: 25),
-          Center(
-            child: Stack(
-              alignment: AlignmentDirectional.topCenter,
+        ),
+        backgroundColor: Colors.white,
+        title: Text(
+          plant.plantName,
+        ),
+      ),
+      backgroundColor: Colors.grey[200],
+      body: Scrollbar(
+        child: ListView(
+          children: <Widget>[
+            Stack(
+              overflow: Overflow.visible,
+              alignment: AlignmentDirectional.bottomEnd,
               children: <Widget>[
-                BoxInit(plant),
-                PlantCircle(
-                  plantName: plant.plantName,
-                  imagePath: plant.plantCircleURL,
+                AspectRatio(
+                  aspectRatio: 3 / 2,
+                  child: Image.asset(
+                    plant.plantURL,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                SizedBox(
-                  height: 310,
-                )
+                Positioned(
+                  right: 25,
+                  bottom: -25,
+                  child: Container(
+                    width: 52,
+                    height: 52,
+                    decoration: ShapeDecoration(
+                      shape: CircleBorder(),
+                      color: Colors.green,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          width: 50,
+                          height: 50,
+                          decoration: ShapeDecoration(
+                            shape: CircleBorder(),
+                            color: Colors.white,
+                          ),
+                          child: FlatButton(
+                            child: Icon(Icons.favorite),
+                            onPressed: ()
+                            {
+                              Provider.of<List<Plant>>(context).length;
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
-          ),
-          TextBox(
-            title: "Description",
-            text: plant.boxDescription,
-          ),
-          TextBox(
-            title: "Nutritional Value",
-            text: plant.boxNutritionalValue,
-          ),
-          TextBox(
-            title: "Health Benefits",
-            text: plant.boxHealthBenefits,
-          ),
-          TextBox(
-            title: "Other Uses",
-            text: plant.boxOtherUses,
-          ),
-          TextBox(
-            title: "Warnings",
-            text: plant.boxWarnings,
-          )
-        ],
+            SizedBox(height: 25),
+            Center(
+              child: Stack(
+                alignment: AlignmentDirectional.topCenter,
+                children: <Widget>[
+                  BoxInit(plant),
+                  PlantCircle(
+                    plantName: plant.plantName,
+                    imagePath: plant.plantCircleURL,
+                  ),
+                  SizedBox(
+                    height: 310,
+                  )
+                ],
+              ),
+            ),
+            TextBox(
+              title: "Description",
+              text: plant.boxDescription,
+            ),
+            TextBox(
+              title: "Nutritional Value",
+              text: plant.boxNutritionalValue,
+            ),
+            TextBox(
+              title: "Health Benefits",
+              text: plant.boxHealthBenefits,
+            ),
+            TextBox(
+              title: "Other Uses",
+              text: plant.boxOtherUses,
+            ),
+            TextBox(
+              title: "Warnings",
+              text: plant.boxWarnings,
+            )
+          ],
+        ),
       ),
     );
   }
