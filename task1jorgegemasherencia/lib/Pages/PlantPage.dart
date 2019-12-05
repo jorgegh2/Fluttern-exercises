@@ -59,10 +59,15 @@ class PlantPage extends StatelessWidget {
                             color: Colors.white,
                           ),
                           child: FlatButton(
-                            child: Icon(Icons.favorite),
-                            onPressed: ()
-                            {
-                              Provider.of<List<Plant>>(context).length;
+                            child:
+                                (Provider.of<PlantList>(context).Find(plant))
+                                    ? Icon(Icons.favorite)
+                                    : Icon(Icons.favorite_border),
+                            onPressed: () {
+                              if (!Provider.of<PlantList>(context)
+                                  .Find(plant)) {
+                                Provider.of<PlantList>(context).AddPlant(plant);
+                              }
                             },
                           ),
                         ),
