@@ -1,11 +1,6 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:task1jorgegemasherencia/Pages/PlantPage.dart';
 import 'package:task1jorgegemasherencia/plant.dart';
-import 'package:path_provider/path_provider.dart';
 
 class PlantListPage extends StatelessWidget {
   @override

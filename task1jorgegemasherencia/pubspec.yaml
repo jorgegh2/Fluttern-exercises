@@ -47,6 +47,7 @@ flutter:
    - assets/CircleImage.jpg
    - assets/IndianMadder.jpg
    - assets/test.json
+   - assets/favorites.json
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
   # - Assets/CircleImage.jpg

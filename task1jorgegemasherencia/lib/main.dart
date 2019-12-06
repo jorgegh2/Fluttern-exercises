@@ -8,12 +8,34 @@ void main() => runApp(PlantInfo());
 class PlantInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return FutureProvider<PlantList>( 
-      builder: (_) => loadFavorites(), 
-      initialData: null,
-      child: MaterialApp(
-      home: PlantListPage(),
-    )
-    );
+    return FutureBuilder(
+        future: loadFavorites(),
+        builder: (context, AsyncSnapshot<PlantList> snapshot) {
+          if (!snapshot.hasData) {
+            return Center(child: CircularProgressIndicator());
+          }
+          return ChangeNotifierProvider<PlantList>(
+            builder: (_) => snapshot.data,
+            child: MaterialApp(
+              home: PlantListPage(),
+            ),
+          );
+        });
   }
 }
+
+//class Pr extends StatelessWidget {
+//  const Pr({
+//    Key key,
+//  }) : super(key: key);
+//
+//  @override
+//  Widget build(BuildContext context) {
+//    return ChangeNotifierProvider<PlantList>(
+//      builder: (_) => Provider.of<PlantList>(context),
+//      child: MaterialApp(
+//        home: PlantListPage(),
+//      ),
+//    );
+//  }
+//}

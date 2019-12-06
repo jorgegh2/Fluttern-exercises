@@ -9,6 +9,7 @@ class PlantPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    PlantList favorites = Provider.of<PlantList>(context);
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black),
@@ -60,14 +61,18 @@ class PlantPage extends StatelessWidget {
                           ),
                           child: FlatButton(
                             child:
-                                (Provider.of<PlantList>(context).Find(plant))
+                                (favorites.Find(plant))
                                     ? Icon(Icons.favorite)
                                     : Icon(Icons.favorite_border),
                             onPressed: () {
-                              if (!Provider.of<PlantList>(context)
+                              if (!favorites
                                   .Find(plant)) {
-                                Provider.of<PlantList>(context).AddPlant(plant);
+                                favorites.AddPlant(plant);
                               }
+                              else{
+                                favorites.RemovePlantId(favorites.FindId(plant));
+                              }
+
                             },
                           ),
                         ),

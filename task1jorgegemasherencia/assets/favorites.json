@@ -1,7 +1,7 @@
 [
     {
         "basicInfo": {
-            "plantName": "Indian Madder",
+            "plantName": "test",
             "URLs": {
                 "plantURL": "assets/IndianMadder.jpg",
                 "plantCircleURL": "assets/CircleImage.jpg"
@@ -22,7 +22,7 @@
     },
     {
         "basicInfo": {
-            "plantName": "Indian Madder3",
+            "plantName": "test2",
             "URLs": {
                 "plantURL": "assets/IndianMadder.jpg",
                 "plantCircleURL": "assets/CircleImage.jpg"
