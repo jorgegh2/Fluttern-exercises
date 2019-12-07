@@ -60,6 +60,8 @@ class PlantPage extends StatelessWidget {
                             color: Colors.white,
                           ),
                           child: FlatButton(
+                            padding: EdgeInsets.only(left: 0), //Don't know why but without it the icon is not centered.
+                            shape: CircleBorder(),
                             child:
                                 (favorites.Find(plant))
                                     ? Icon(Icons.favorite)

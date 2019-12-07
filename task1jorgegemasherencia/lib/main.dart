@@ -23,19 +23,3 @@ class PlantInfo extends StatelessWidget {
         });
   }
 }
-
-//class Pr extends StatelessWidget {
-//  const Pr({
-//    Key key,
-//  }) : super(key: key);
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    return ChangeNotifierProvider<PlantList>(
-//      builder: (_) => Provider.of<PlantList>(context),
-//      child: MaterialApp(
-//        home: PlantListPage(),
-//      ),
-//    );
-//  }
-//}
