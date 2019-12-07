@@ -64,7 +64,7 @@ class PlantPage extends StatelessWidget {
                             shape: CircleBorder(),
                             child:
                                 (favorites.Find(plant))
-                                    ? Icon(Icons.favorite)
+                                    ? Icon(Icons.favorite, color: Colors.red,)
                                     : Icon(Icons.favorite_border),
                             onPressed: () {
                               if (!favorites

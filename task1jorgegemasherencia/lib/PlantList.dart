@@ -46,6 +46,11 @@ class PlantList with ChangeNotifier
     _plantList.removeAt(plantId);
     notifyListeners();
   }
+List<Plant> Getlist()
+{
+  return _plantList;
+}
+
 }
 
 Future<PlantList> loadFavorites() async {

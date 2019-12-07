@@ -7,6 +7,26 @@ class PlantListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: <Widget>[
+          FlatButton(
+            shape: CircleBorder(),
+            child: Icon(
+              Icons.favorite,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => FavoriteListPage(),
+                ),
+              );
+            },
+          ),
+        ],
+        title: Text("Herbs"),
+        backgroundColor: Colors.green,
+      ),
       body: FutureBuilder(
         future: loadPlants(),
         builder: (context, AsyncSnapshot<List<Plant>> snapshot) {
@@ -24,70 +44,9 @@ class PlantListPage extends StatelessWidget {
               return Card(
                 shape: Border(),
                 child: InkWell(
-                  child: Column(
-                    children: <Widget>[
-                      Image.asset(_plantList[index].plantURL),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        children: <Widget>[
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Container(
-                            width: 80,
-                            child: Text(
-                              //Title 1
-                              "Family:",
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.green,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            //Title 2
-                            "Used Part:",
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.green,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: <Widget>[
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Container(
-                            width: 80,
-                            child: Text(
-                              //Title 1
-                              _plantList[index].familyDescription,
-                              style: TextStyle(
-                                fontSize: 11,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: 80,
-                            child: Text(
-                              //Title 2
-                              _plantList[index].usedPartDescription,
-                              style: TextStyle(
-                                fontSize: 11,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
+                  child: PlantPreview(
+                    plantList: _plantList,
+                    index: index,
                   ),
                   onTap: () {
                     Navigator.of(context).push(
@@ -102,15 +61,100 @@ class PlantListPage extends StatelessWidget {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.favorite),
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => FavoriteListPage(),
+    );
+  }
+}
+
+class PlantPreview extends StatelessWidget {
+  const PlantPreview({
+    Key key,
+    @required List<Plant> plantList,
+    @required int index,
+  })  : _plantList = plantList,
+        _index = index,
+        super(key: key);
+
+  final List<Plant> _plantList;
+  final int _index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Image.asset(_plantList[_index].plantURL),
+        SizedBox(
+          height: 5,
+        ),
+        Row(
+          children: <Widget>[
+            SizedBox(
+              width: 5,
             ),
-          );
-        },
+            Container(
+              width: 80,
+              child: Title(
+                titleName: "Family:",
+              ),
+            ),
+            Title(
+              titleName: "Used Part:",
+            ),
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            SizedBox(
+              width: 5,
+            ),
+            Container(
+              width: 80,
+              child: Subtitle(
+                subtitleText: _plantList[_index].familyDescription,
+              ),
+            ),
+            Container(
+              width: 80,
+              child: Subtitle(
+                subtitleText: _plantList[_index].usedPartDescription,
+              ),
+            ),
+          ],
+        )
+      ],
+    );
+  }
+}
+
+class Subtitle extends StatelessWidget {
+  final String subtitleText;
+  Subtitle({@required this.subtitleText});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      //Title 1
+      subtitleText,
+      style: TextStyle(
+        fontSize: 11,
+        color: Colors.grey,
+      ),
+    );
+  }
+}
+
+class Title extends StatelessWidget {
+  String titleName;
+
+  Title({@required this.titleName});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      titleName,
+      style: TextStyle(
+        fontSize: 12,
+        color: Colors.green,
+        fontWeight: FontWeight.bold,
       ),
     );
   }
