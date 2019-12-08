@@ -81,7 +81,26 @@ class PlantPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Image.asset(_plantList[_index].plantURL),
+        Stack(
+          alignment: AlignmentDirectional.bottomStart,
+          children: <Widget>[
+            Container(
+              width: 181,
+              height: 125,
+              child: Image.asset(
+                _plantList[_index].plantCircleURL,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                _plantList[_index].plantName,
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
+            )
+          ],
+        ),
         SizedBox(
           height: 5,
         ),
@@ -143,7 +162,7 @@ class Subtitle extends StatelessWidget {
 }
 
 class Title extends StatelessWidget {
-  String titleName;
+  final String titleName;
 
   Title({@required this.titleName});
 

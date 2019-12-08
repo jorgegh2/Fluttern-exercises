@@ -22,19 +22,19 @@ class FavoriteListPage extends StatelessWidget {
           crossAxisSpacing: 5,
           crossAxisCount: 2,
         ),
-        itemCount: favorites.Count(),
+        itemCount: favorites.count(),
         itemBuilder: (context, index) {
           return Card(
             shape: Border(),
             child: InkWell(
               child: PlantPreview(
-                plantList: favorites.Getlist(),
+                plantList: favorites.getlist(),
                 index: index,
               ),
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (_) => PlantPage(favorites.GetPlantByIndex(index)),
+                    builder: (_) => PlantPage(favorites.getPlantByIndex(index)),
                   ),
                 );
               },

@@ -63,16 +63,16 @@ class PlantPage extends StatelessWidget {
                             padding: EdgeInsets.only(left: 0), //Don't know why but without it the icon is not centered.
                             shape: CircleBorder(),
                             child:
-                                (favorites.Find(plant))
+                                (favorites.find(plant))
                                     ? Icon(Icons.favorite, color: Colors.red,)
                                     : Icon(Icons.favorite_border),
                             onPressed: () {
                               if (!favorites
-                                  .Find(plant)) {
-                                favorites.AddPlant(plant);
+                                  .find(plant)) {
+                                favorites.addPlant(plant);
                               }
                               else{
-                                favorites.RemovePlantId(favorites.FindId(plant));
+                                favorites.removePlantId(favorites.findId(plant));
                               }
 
                             },
